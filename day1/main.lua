@@ -13,41 +13,16 @@ function love.load()
     end
     i, k = 1, 1
     a, b = 0, 0
-    circles = {}
+    initBackground()
 end
 
 function love.draw()
     w, h = love.graphics.getDimensions()
-    -- background
-    love.graphics.clear(0, 0.05, 0)
-    love.graphics.setColor(0, 0.1, 0)
-    love.graphics.setLineWidth(4)
-    for j = 1, 6 do
-        love.graphics.line(w / 2, h / 2, math.cos(2 * math.pi * (j + 0.5) / 6) * 1000 + w / 2,
-            math.sin(2 * math.pi * (j + 0.5) / 6) * 1000 + h / 2)
-    end
-    for j = 1, 10 do
-        love.graphics.circle("line", w / 2, h / 2, j * 200 * scale)
-        love.graphics.print(j * 200, w / 2 + 5, h / 2 - (j * 200 * scale) - 24)
-    end
-    -- line
+    love.graphics.draw(background)
+    -- blips
     love.graphics.setLineWidth(1)
-    for j = math.max(1, i - 200), i - 1 do
-        local f = 1 - (i - j) / 200
-        c = l[j + 1] > l[j] and {0, 1, 0, f * f * 0.8} or {0, 0, 0, f * f * 0.8}
-        love.graphics.setColor(c)
-        love.graphics.circle("line", w / 2, h / 2, j * scale)
-    end
-    for j = math.max(1, k - 200), k - 1 do
-        local f = 1 - (k - j) / 200
-        c = l[j + 3] > l[j] and {1, 0, 0, f * f * 0.8} or {0, 0, 0, f * f * 0.8}
-        love.graphics.setColor(c)
-        love.graphics.circle("line", w / 2, h / 2, j * scale)
-    end
-    love.graphics.setColor(0, 1, 0)
-    love.graphics.circle("line", w / 2, h / 2, i * scale)
-    love.graphics.setColor(1, 0, 0)
-    love.graphics.circle("line", w / 2, h / 2, k * scale)
+    drawBlip(1, {0, 1, 0}, i)
+    drawBlip(3, {1, 0, 0}, k)
     -- legend
     love.graphics.setColor(0, 0, 0, 0.2)
     tw, th = legend:getDimensions()
@@ -70,4 +45,35 @@ function love.update(dt)
         k = k + 1
     end
     legend:set({{0, 1, 0}, "Part 1: " .. a, {1, 0, 0}, "\nPart 2: " .. b})
+end
+
+function initBackground()
+    -- make background canvas
+    background = love.graphics.newCanvas()
+    love.graphics.setCanvas(background)
+    w, h = love.graphics.getDimensions()
+    -- background
+    love.graphics.clear(0, 0.05, 0)
+    love.graphics.setColor(0, 0.1, 0)
+    love.graphics.setLineWidth(4)
+    for j = 1, 6 do
+        love.graphics.line(w / 2, h / 2, math.cos(2 * math.pi * (j + 0.5) / 6) * 1000 + w / 2,
+            math.sin(2 * math.pi * (j + 0.5) / 6) * 1000 + h / 2)
+    end
+    for j = 1, 10 do
+        love.graphics.circle("line", w / 2, h / 2, j * 200 * scale)
+        love.graphics.print(j * 200, w / 2 + 5, h / 2 - (j * 200 * scale) - 24)
+    end
+    love.graphics.setCanvas()
+end
+
+function drawBlip(offset, color, index)
+    for j = math.max(1, index - 200), index - 1 do
+        local f = 1 - (index - j) / 200
+        c = l[j + offset] > l[j] and {color[1], color[2], color[3], f * f * 0.8} or {0, 0, 0, f * f * 0.8}
+        love.graphics.setColor(c)
+        love.graphics.circle("line", w / 2, h / 2, j * scale)
+    end
+    love.graphics.setColor(color)
+    love.graphics.circle("line", w / 2, h / 2, index * scale)
 end
