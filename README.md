@@ -12,4 +12,12 @@ previously i'd end up spending forever trying to
 figure out weird things with `tkinter` or other
 python builtins.
 If you have it installed you should be able to run each of the files with just `love day*.lua`
-- [Day 2, Part 1](day2/main.lua) ![day 2 graphical screenshot](assets/day2graphic.jpg?raw=true | width=200)
+<details>
+  <summary>Day 2, Part 1</summary>
+  <p>
+    
+  ### [Code](day2/main.lua)
+    
+  ![day 2 screenshot](assets/day2graphic.jpg?raw=true)
+  </p>
+</details>
