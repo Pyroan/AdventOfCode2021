@@ -13,6 +13,15 @@ figure out weird things with `tkinter` or other
 python builtins.
 If you have it installed you should be able to run each of the files with just `love day*.lua`
 <details>
+  <summary>Day 1 (Combined)</summary>
+  <p>
+    
+  ### [Code](day1/main.lua)
+    
+  ![day 2 screenshot](assets/day1graphic.jpg?raw=true)
+  </p>
+</details>
+<details>
   <summary>Day 2, Part 1</summary>
   <p>
     
