@@ -1,7 +1,7 @@
 -- only handles part 1
 function love.load()
     love.window.setMode(1000, 600)
-    love.window.setTitle("Day 2")
+    love.window.setTitle("Day 2, Part 1")
     love.graphics.setFont(love.graphics.newFont(18))
     legend = love.graphics.newText(love.graphics.newFont(18), "blugh")
     points = {0, 0}
