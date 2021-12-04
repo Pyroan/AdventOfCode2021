@@ -7,7 +7,7 @@ Every year, I end up adding some extra challenges/projects for myself, for funsi
 - Day 3 (Part 2): [192 bytes](day3/day3golf.py)
 
 [^1]: Under my personal rules for this, input must read from a file called "day\*.txt". Golfs can do one or both parts, which will be specified with the filename. Byte counts com from `wc -c`, and files have LF line endings
-## Graphical Versions:
+## Visualizations:
 Trying something new with my visualizations this year, using Löve.
 previously I'd end up spending forever trying to
 figure out weird things with `tkinter` or other
